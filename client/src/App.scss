@@ -1,0 +1,106 @@
+@import "~antd/dist/antd.css";
+$mainFont: "Courgette", cursive;
+body {
+  font-family: $mainFont;
+}
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+// --------------------------------------------add products-------------------------------------------------------------
+.add-product-card {
+  width: 80%;
+  min-height: 80%;
+  @extend .flex-box;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.admin-cards {
+  width: 450px;
+  height: 550px;
+  @extend .flex-box;
+}
+.product-input-fields {
+  display: flex;
+  align-items: center;
+}
+
+.add-products-card {
+  display: flex;
+  align-items: flex-start;
+  width: 600px;
+  flex-direction: column;
+  height: 100%;
+}
+.add-card1{
+  display: flex;
+  align-items: center;
+  width: 550px;
+  height: 550px;
+  background-image: url("./assets/img1.jpg");
+  background-size:cover;
+}
+#fields {
+  margin: 10px;
+}
+// ------------------------------------------------Login--------------------------------------------------------------
+.admin-login-container {
+  @extend .admin-container;
+}
+.ant-card-body > * {
+  margin: 1rem;
+}
+.ant-card-body {
+  display: flex;
+
+  flex-direction: column;
+}
+.login-fields {
+  width: 100%;
+  height: 100%;
+}
+// --------------------------------------------layout-ant-----------------------------------------------------------
+#layout-container{
+  height: 100%;
+}
+// ------------------------------------------------Shopping-Details--------------------------------------------------
+.flip-card-container{
+  width: 250px;
+  height: 250px;
+  position: relative;
+  perspective:100vw;
+}
+.flip-card-container .front,.flip-card-container .back{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  transition:.9s;
+  backface-visibility: hidden;
+
+}
+.flip-card-container:hover .front{
+  transform: rotateY(180deg);
+  background:blue;
+}
+.flip-card-container .back{
+  background:#333;
+  transform: rotateY(180deg);
+}
+.flip-card-container:hover .back{
+  transform: rotateY(360deg);
+}
