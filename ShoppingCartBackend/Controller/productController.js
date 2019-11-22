@@ -10,6 +10,7 @@ exports.addProduct = (req, res) => {
         req.checkBody('type', 'Type should not be empty').notEmpty();
         req.checkBody('color', 'productName is invalid').notEmpty();
         req.checkBody('brand', 'brand cant be empty').notEmpty();
+        req.checkBody('description', 'description cant be empty').notEmpty();
         var response = {};
         var errors = req.validationErrors();
         if (errors) {

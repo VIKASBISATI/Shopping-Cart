@@ -14,7 +14,8 @@ exports.addProduct = (req,file) => {
                 "type": req.body.type,
                 "color": req.body.color,
                 "brand": req.body.brand,
-                "imageUrl":file
+                "imageUrl":file,
+                "description":req.body.description
             });
             console.log("add to cart", req.body.addToCart);
             productData.save((err, data) => {

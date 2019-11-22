@@ -10,7 +10,7 @@ render(){
   return(
     <Router>
       <Route exact path="/shopDetails" component={ShoppingDetails} />
-      <Route exact path="/addProducts" component={AdminAddProducts} />
+      <Route exact path="/adminActions/addProducts" component={AdminAddProducts} />
       <Route exact path="/adminLogin" component={AdminLogin} />
     </Router>
   )

@@ -44,12 +44,16 @@ class AdminAddProducts extends Component {
   };
   handleBrand = e => {
     this.setState({
+      description: e.target.value
+    });
+  };
+  handleDescription = e => {
+    this.setState({
       brand: e.target.value
     });
   };
   handleChange = e => {
     console.log("on Change in admin products", e.target.files[0]);
-    let formData = new FormData();
     this.setState({
       info: e.target.files[0]
     });
@@ -62,7 +66,8 @@ class AdminAddProducts extends Component {
       brand: "",
       type: "",
       color: "",
-      price: ""
+      price: "",
+      description: ""
     });
     // formData.append("image", e.target.files[0]);
     formData.append("image", this.state.info);
@@ -71,11 +76,10 @@ class AdminAddProducts extends Component {
     formData.append("type", this.state.type);
     formData.append("color", this.state.color);
     formData.append("brand", this.state.brand);
-
+    formData.append("description", this.state.description);
     addProducts(formData)
       .then(res => {
         console.log("res in add products", res);
-
         notification["success"]({
           message: "Add products response details",
           description: "Added product successfully"
@@ -191,6 +195,18 @@ class AdminAddProducts extends Component {
                 </div>
                 <div>
                   <span id="fields" style={{ fontSize: "15px" }}>
+                    *Description :
+                  </span>
+                  <Input
+                    onChange={this.handleDescription}
+                    id="fields"
+                    className="description"
+                    placeholder="Enter description"
+                    value={this.state.description}
+                  />
+                </div>
+                <div>
+                  <span id="fields" style={{ fontSize: "15px" }}>
                     *Upload Image :
                   </span>
                   {/* <Upload onChange={this.handleChange}>
@@ -206,7 +222,6 @@ class AdminAddProducts extends Component {
                 </Button>
               </div>
             </Content>
-            
           </Layout>
         </Content>
       </Layout>
