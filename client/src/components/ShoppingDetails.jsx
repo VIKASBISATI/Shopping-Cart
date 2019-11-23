@@ -14,7 +14,6 @@ class ShoppingDetails extends Component {
   getDetails = () => {
     getAllProducts()
       .then(res => {
-        console.log("res in get all products", res.data);
         this.setState({
           productDetails: res.data
         });
@@ -32,7 +31,7 @@ class ShoppingDetails extends Component {
             <div
               className="front"
               style={{
-                backgroundImage: `url(${require("../assets/img1.jpg")})`
+                backgroundImage: `url(${data.imageUrl})`
               }}
             ></div>
             <div className="back">
@@ -49,18 +48,18 @@ class ShoppingDetails extends Component {
       );
     });
     return (
-      <div className="main-container">
+      <div className="main-container" style={{background:"#f0f2f5"}}>
         <Layout>
           <Header style={{ backgroundColor: "#00ffff" }}>
             <h1 className="header">Vikkart</h1>
           </Header>
-          <div className="product-header-style">
-            <h1 className="products-header">All Products</h1>
-            <div className="line"></div>
-          </div>
-        </Layout>
-        <div className="map-mobile-container">{mapMobiles}</div>
-      </div>
+            <div className="product-header-style">
+              <h1 className="products-header">All Products</h1>
+              <div className="line"></div>
+            </div>
+          </Layout>
+          <div className="map-mobile-container">{mapMobiles}</div>
+        </div>
     );
   }
 }

@@ -31,15 +31,31 @@ const productSchema = new schema({
     },
     "count": {
         type: String,
-        default:0
+        default: 0
     },
-    "imageUrl":{
-        type:String,
-        default:''
+    "imageUrl": {
+        type: String,
+        default: ''
     },
-    "description":{
-        type:String,
-        default:''
+    "description": {
+        type: String,
+        default: ''
+    },
+    "orders": {
+        "firstName": {
+            type: String,
+        },
+        "lastName": {
+            type: String,
+        },
+        "mobileNumber": {
+            type: String,
+        },
+        "addressess": [{
+            "address": {
+                type: String,
+            }
+        }]
     }
 }, {
     timestamps: true

@@ -17,7 +17,7 @@ export function getAllProducts() {
 }
 export async function addProducts(data) {
   console.log("data in add servicdes", data);
-  for (var pair of data.entries()) {
+  for (var pair of data.entries()) {  
     console.log(pair[0] + ", " + pair[1]);
   }
   var headers = {

@@ -19,7 +19,8 @@ class AdminAddProducts extends Component {
       brand: "",
       type: "",
       color: "",
-      price: ""
+      price: "",
+      description:''
     };
   }
   handlePname = e => {
@@ -44,12 +45,12 @@ class AdminAddProducts extends Component {
   };
   handleBrand = e => {
     this.setState({
-      description: e.target.value
+      brand: e.target.value
     });
   };
   handleDescription = e => {
     this.setState({
-      brand: e.target.value
+      description: e.target.value
     });
   };
   handleChange = e => {

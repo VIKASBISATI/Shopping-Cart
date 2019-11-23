@@ -100,3 +100,28 @@ exports.updateProduct = (req, res) => {
             })
     }
 }
+
+exports.placeOrder = (req, res) => {
+    console.log("controller",req.body);
+    req.checkBody('id', 'id is invalid').notEmpty();
+    req.checkBody('firstName', 'productName is invalid').notEmpty();
+    req.checkBody('lastName', 'Invalid price details').notEmpty();
+    req.checkBody('mobileNumber', 'Type should not be empty').notEmpty();
+    req.checkBody('address', 'productName is invalid').notEmpty();
+    var response = {};
+    var errors = req.validationErrors();
+    if (errors) {
+        response.success = false;
+        response.data = null;
+        response.err = errors
+        res.status(422).send(response);
+    } else {
+        productService.placeOrder(req)
+            .then((data) => {
+                res.status(200).send(data)
+            })
+            .catch((err) => {
+                res.status(404).send(err);
+            })
+    }
+}

@@ -6,4 +6,5 @@ const productVerify=require('../MiddleWare/token')
 router.post('/addToCart',productVerify.verifyToken,productController.addToCart)
 router.get('/getProducts',productVerify.verifyToken,productController.getAllProducts);
 router.put('/updateProduct',productVerify.verifyToken,productController.updateProduct);
+router.post('/placeOrder',productVerify.verifyToken,productController.placeOrder);
 module.exports=router;
