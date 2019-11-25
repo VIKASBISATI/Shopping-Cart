@@ -88,7 +88,7 @@ class AdminAddProducts extends Component {
       })
       .catch(err => {
         console.log("err in add products", err);
-        notification["failure"]({
+        notification["error"]({
           message: "Add products response details",
           description: "Error in adding the products"
         });

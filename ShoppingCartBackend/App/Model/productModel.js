@@ -51,11 +51,9 @@ const productSchema = new schema({
         "mobileNumber": {
             type: String,
         },
-        "addressess": [{
-            "address": {
-                type: String,
-            }
-        }]
+        "addressess": [{"address":{}}
+           
+        ]
     }
 }, {
     timestamps: true

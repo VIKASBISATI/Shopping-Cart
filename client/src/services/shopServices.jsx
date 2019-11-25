@@ -16,25 +16,29 @@ export function getAllProducts() {
     });
 }
 export async function addProducts(data) {
-  console.log("data in add servicdes", data);
-  for (var pair of data.entries()) {  
-    console.log(pair[0] + ", " + pair[1]);
-  }
   var headers = {
     "Content-Type": "multipart/form-data",
-    "token": tok
+    token: tok
   };
-  let res=await axios
-    .post("http://localhost:4000/image/image-upload", data, {
+  let res = await axios.post("http://localhost:4000/image/image-upload", data, {
+    headers: headers
+  });
+  return res;
+}
+export function addToCart(data) {
+  console.log("data in product add to cart",data);
+  
+  var headers = {
+    token: tok
+  };
+  return axios
+    .post("http://localhost:4000/product/addToCart", data, {
       headers: headers
     })
-    return res;
-    // .then(res => {
-    //   console.log("data in add res", res);
-    //   return res;
-    // })
-    // .catch(err => {
-    //   console.log("data in add err", err);
-    //   return err;
-    // });
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      return err;
+    });
 }

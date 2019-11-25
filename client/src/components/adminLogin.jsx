@@ -13,12 +13,12 @@ class AdminLogin extends Component {
             <h1>Admin Login</h1>
           </div>
           <div className="login-fields">
-          <span>Email:</span>
-          <Input placeholder="Enter email" />
+            <span>Email:</span>
+            <Input placeholder="Enter email" />
           </div>
           <div className="login-fields">
-          <span>Password:</span>
-          <Input.Password placeholder="Enter password..." />
+            <span>Password:</span>
+            <Input.Password placeholder="Enter password..." />
           </div>
           <Button type="primary">Login</Button>
         </Card>

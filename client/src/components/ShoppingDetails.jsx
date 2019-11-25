@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import { getAllProducts } from "../services/shopServices";
-import { Layout, Button } from "antd";
+import { getAllProducts, addToCart } from "../services/shopServices";
+import { Button, notification } from "antd";
+import CartHeader from "./header";
+import { withRouter } from "react-router";
 class ShoppingDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productDetails: []
+      productDetails: [],
+      count: 0
     };
   }
   componentDidMount() {
@@ -17,13 +20,44 @@ class ShoppingDetails extends Component {
         this.setState({
           productDetails: res.data
         });
+        console.log("product details", this.state.productDetails);
+        var count = this.state.productDetails.filter(data => {
+          return data.addToCart === "true";
+        });
+        this.setState({
+          count: count.length
+        });
+        console.log("final count is ", this.state.count);
       })
       .catch(err => {
         console.log("err in get all products");
       });
   };
+  handleAddToCart = id => {
+    console.log("id in handler add to cart", id);
+    var data = {
+      id: id,
+      addToCart: true
+    };
+    this.getDetails();
+    addToCart(data)
+      .then(res => {
+        var placement = "bottomRight";
+        notification["success"]({
+          message: "Add to cart response details",
+          description: "Added product to the cart successfully",
+          placement
+        });
+      })
+      .catch(err => {
+        notification["error"]({
+          message: "Add to cart response details",
+          description: "failed to add product to the cart"
+        });
+      });
+  };
   render() {
-    const { Header } = Layout;
+    console.log("undefined pro", this.state.productDetails);
     const mapMobiles = this.state.productDetails.map((data, index) => {
       return (
         <div key={index}>
@@ -40,7 +74,9 @@ class ShoppingDetails extends Component {
                 <h1> {data.type}</h1>
                 <h1> {data.color}</h1>
                 <h1> {data.brand}</h1>
-                <Button onClick={this.handleAddToCart}>AddToCart</Button>
+                <Button onClick={() => this.handleAddToCart(data._id)}>
+                  AddToCart
+                </Button>
               </div>
             </div>
           </div>
@@ -48,19 +84,17 @@ class ShoppingDetails extends Component {
       );
     });
     return (
-      <div className="main-container" style={{background:"#f0f2f5"}}>
-        <Layout>
-          <Header style={{ backgroundColor: "#00ffff" }}>
-            <h1 className="header">Vikkart</h1>
-          </Header>
-            <div className="product-header-style">
-              <h1 className="products-header">All Products</h1>
-              <div className="line"></div>
-            </div>
-          </Layout>
-          <div className="map-mobile-container">{mapMobiles}</div>
+      <div className="main-container" style={{ background: "#f0f2f5" }}>
+        <CartHeader cnt={this.state.count} />
+        <div className="product-header-style">
+          <h1 className="products-header">All Products</h1>
+          <div className="line"></div>
         </div>
+        <div className="map-mobile-container" style={{ background: "#f0f2f5" }}>
+          {mapMobiles}
+        </div>
+      </div>
     );
   }
 }
-export default ShoppingDetails;
+export default withRouter(ShoppingDetails);

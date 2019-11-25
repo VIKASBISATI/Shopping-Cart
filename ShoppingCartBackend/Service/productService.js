@@ -45,10 +45,6 @@ exports.addToCart = (req) => {
                         if (err) {
                             reject(err);
                         } else {
-                            singleUpload(req, res, (err) => {
-                                console.log("req", req.body.productName);
-                                imageURL = req.file.location;
-                            });
                             resolve(data);
                         }
                     })
@@ -59,8 +55,6 @@ exports.addToCart = (req) => {
         console.log(e);
     }
 }
-
-
 
 exports.getAllProducts = (req) => {
     try {
@@ -128,12 +122,11 @@ exports.placeOrder = (req) => {
                     console.log("inside update");
                     productSchema.product.update({ "_id": req.body.id },
                         {
-                            $push: {
-                                "orders": {
-                                    "firstName": req.body.firstName,
-                                    "lastName": req.body.lastName,
-                                    "mobileNumber": req.body.mobileNumber
-                                }
+                            "orders": {
+                                "firstName": req.body.firstName,
+                                "lastName": req.body.lastName,
+                                "mobileNumber": req.body.mobileNumber,
+                                "addressess": req.body.address
                             }
                         }
                         , (err, data) => {

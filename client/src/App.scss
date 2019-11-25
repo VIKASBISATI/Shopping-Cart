@@ -2,6 +2,7 @@
 $mainFont: "Courgette", cursive;
 body {
   font-family: $mainFont;
+  background: "#f0f2f5"
 }
 #root {
   width: 100vw;
@@ -84,7 +85,11 @@ body {
 .header {
   text-transform: uppercase;
 }
-
+.shop-header-contents{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .flip-card-container {
   width: 250px;
   height: 300px;
@@ -144,4 +149,16 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+// --------------------------------------------view cart----------------------------------------------------------------
+.view-details-container{
+  display: flex;
+}
+.view-details-container > div{
+  margin:0 35px 0 0;
+}
+.view-image{
+  width: 100px;
+  height: 100px;
+  background-size: 100% 100%;
 }
